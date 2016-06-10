@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F8488E81-84CD-4A40-A869-BE8109F8192A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Apirion.Expressive.Core</RootNamespace>
+    <AssemblyName>Apirion.Expressive.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Exceptions\EvaluationException.cs" />
+    <Compile Include="Exceptions\LexerException.cs" />
+    <Compile Include="Exceptions\ParserException.cs" />
+    <Compile Include="Exceptions\UnmatchedSymbolException.cs" />
+    <Compile Include="Language\Expressions\BooleanExpression.cs" />
+    <Compile Include="Language\Expressions\ErrorExpression.cs" />
+    <Compile Include="Language\Expressions\Expression.cs" />
+    <Compile Include="Language\Expressions\FloatExpression.cs" />
+    <Compile Include="Language\Expressions\FunctionExpression.cs" />
+    <Compile Include="Language\Expressions\IntegerExpression.cs" />
+    <Compile Include="Language\Expressions\NullExpression.cs" />
+    <Compile Include="Language\Expressions\NumericExpression.cs" />
+    <Compile Include="Language\Expressions\OperationExpression.cs" />
+    <Compile Include="Language\Expressions\OperatorExpression.cs" />
+    <Compile Include="Language\Expressions\Production.cs" />
+    <Compile Include="Language\Expressions\ReplacementSymbolExpression.cs" />
+    <Compile Include="Language\Expressions\ScopedExpression.cs" />
+    <Compile Include="Language\Expressions\ScopeExpression.cs" />
+    <Compile Include="Language\Expressions\SeparatedExpression.cs" />
+    <Compile Include="Language\Expressions\SeparatorExpression.cs" />
+    <Compile Include="Language\Expressions\StringExpression.cs" />
+    <Compile Include="Language\Expressions\SymbolExpression.cs" />
+    <Compile Include="Language\Expressions\TerminatingExpression.cs" />
+    <Compile Include="Language\Expressions\WhitespaceExpression.cs" />
+    <Compile Include="Language\Interpreter\EvaluationResult.cs" />
+    <Compile Include="Language\Interpreter\EvaluationType.cs" />
+    <Compile Include="Language\Interpreter\ExpressionInterpreter.cs" />
+    <Compile Include="Language\Interpreter\ExternalSource.cs" />
+    <Compile Include="Language\Interpreter\Function.cs" />
+    <Compile Include="Language\Interpreter\FunctionSource.cs" />
+    <Compile Include="Language\Interpreter\Interpreter.cs" />
+    <Compile Include="Language\Types\ComparableValue.cs" />
+    <Compile Include="Language\Types\RealNumber.cs" />
+    <Compile Include="Language\Interpreter\NumericPrecision.cs" />
+    <Compile Include="Language\Interpreter\ValueSource.cs" />
+    <Compile Include="Language\Lexer.cs" />
+    <Compile Include="Language\Parser.cs" />
+    <Compile Include="Language\Token.cs" />
+    <Compile Include="Language\TokenClass.cs" />
+    <Compile Include="Evaluate.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Interfaces\IExpression.cs" />
+    <Compile Include="Language\Types\MathematicalValue.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

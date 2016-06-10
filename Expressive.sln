@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apirion.Expressive.Core", "Expressive\Apirion.Expressive.Core.csproj", "{F8488E81-84CD-4A40-A869-BE8109F8192A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apirion.Expressive.Tests", "Expressive.Tests\Apirion.Expressive.Tests.csproj", "{9D34EE06-843C-4574-9CD8-F6C697CEA65C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8488E81-84CD-4A40-A869-BE8109F8192A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8488E81-84CD-4A40-A869-BE8109F8192A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8488E81-84CD-4A40-A869-BE8109F8192A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8488E81-84CD-4A40-A869-BE8109F8192A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D34EE06-843C-4574-9CD8-F6C697CEA65C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D34EE06-843C-4574-9CD8-F6C697CEA65C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D34EE06-843C-4574-9CD8-F6C697CEA65C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D34EE06-843C-4574-9CD8-F6C697CEA65C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

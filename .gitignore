@@ -1,0 +1,13 @@
+.hg/
+.hgignore
+.vs/
+*.dll
+*.pdb
+*.cache
+/obj/
+*/obj/*
+TestResults/
+*.user
+*.suo
+*/Debug/*
+*/bin/*

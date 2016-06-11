@@ -221,6 +221,14 @@ namespace Apirion.Expressive.Tests.InterpreterTests
                 Assert.AreEqual(EvaluationType.Int, value.Type);
                 Assert.AreEqual(6, value.AsInt().Value);
             }
+            using (var timer = new TimeAssertion(milliseconds: 5))
+            {
+                value = EvaluateOperation(@"SumInts([three], 2) + 1", NumericPrecision.Decimal,
+                    new Dictionary<string, object> { { "[three]", 3 } },
+                    new Dictionary<string, ExternalFunction> { { "SumInts", SumInts } });
+                Assert.AreEqual(EvaluationType.Int, value.Type);
+                Assert.AreEqual(6, value.AsInt().Value);
+            }
         }
 
         [TestMethod]

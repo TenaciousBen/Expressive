@@ -65,7 +65,6 @@
     <Compile Include="Language\Expressions\WhitespaceExpression.cs" />
     <Compile Include="Language\Interpreter\EvaluationResult.cs" />
     <Compile Include="Language\Interpreter\EvaluationType.cs" />
-    <Compile Include="Language\Interpreter\ExpressionInterpreter.cs" />
     <Compile Include="Language\Interpreter\ExternalSource.cs" />
     <Compile Include="Language\Interpreter\Function.cs" />
     <Compile Include="Language\Interpreter\FunctionSource.cs" />
@@ -78,7 +77,6 @@
     <Compile Include="Language\Parser.cs" />
     <Compile Include="Language\Token.cs" />
     <Compile Include="Language\TokenClass.cs" />
-    <Compile Include="Evaluate.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Interfaces\IExpression.cs" />
     <Compile Include="Language\Types\MathematicalValue.cs" />

@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Apirion.Expressive.Core.Language;
+using Expressive.Core.Language;
 
-namespace Apirion.Expressive.Core.Exceptions
+namespace Expressive.Core.Exceptions
 {
     public class LexerException : Exception
     {

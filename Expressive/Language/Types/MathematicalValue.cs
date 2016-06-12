@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Apirion.Expressive.Core.Language.Types
+namespace Expressive.Core.Language.Types
 {
     public abstract class MathematicalValue<T> : ComparableValue<T>
         where T : class, IComparable<T>, IEquatable<T>

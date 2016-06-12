@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Apirion.Expressive.Core.Language.Expressions
+namespace Expressive.Core.Language.Expressions
 {
     public class Production
     {

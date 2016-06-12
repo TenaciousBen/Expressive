@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Apirion.Expressive.Tests.Helpers
+namespace Expressive.Tests.Helpers
 {
     public class TimeAssertion : IDisposable
     {

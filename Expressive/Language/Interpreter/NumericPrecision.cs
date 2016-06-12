@@ -1,4 +1,4 @@
-﻿namespace Apirion.Expressive.Core.Language.Interpreter
+﻿namespace Expressive.Core.Language.Interpreter
 {
     public enum NumericPrecision
     {

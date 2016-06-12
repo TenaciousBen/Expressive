@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Apirion.Expressive.Core.Language;
-using Apirion.Expressive.Core.Language.Expressions;
+using Expressive.Core.Language;
+using Expressive.Core.Language.Expressions;
 
-namespace Apirion.Expressive.Core.Extensions
+namespace Expressive.Core.Extensions
 {
     public static class EnumerableExtensions
     {

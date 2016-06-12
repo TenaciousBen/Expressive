@@ -6,8 +6,8 @@
     <ProjectGuid>{9D34EE06-843C-4574-9CD8-F6C697CEA65C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Apirion.Expressive.Tests</RootNamespace>
-    <AssemblyName>Apirion.Expressive.Tests</AssemblyName>
+    <RootNamespace>Expressive.Tests</RootNamespace>
+    <AssemblyName>Expressive.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -60,9 +60,9 @@
     <Compile Include="LexerTests\LexerRegexTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Expressive\Apirion.Expressive.Core.csproj">
+    <ProjectReference Include="..\Expressive\Expressive.Core.csproj">
       <Project>{f8488e81-84cd-4a40-a869-be8109f8192a}</Project>
-      <Name>Apirion.Expressive.Core</Name>
+      <Name>Expressive.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

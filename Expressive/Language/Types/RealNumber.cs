@@ -1,7 +1,7 @@
 using System;
-using Apirion.Expressive.Core.Language.Interpreter;
+using Expressive.Core.Language.Interpreter;
 
-namespace Apirion.Expressive.Core.Language.Types
+namespace Expressive.Core.Language.Types
 {
     public class RealNumber : MathematicalValue<RealNumber>
     {

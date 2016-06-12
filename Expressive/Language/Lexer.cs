@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Apirion.Expressive.Core.Exceptions;
+using Expressive.Core.Exceptions;
 
-namespace Apirion.Expressive.Core.Language
+namespace Expressive.Core.Language
 {
     public static class Lexer
     {

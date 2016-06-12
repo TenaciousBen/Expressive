@@ -1,10 +1,8 @@
-﻿using System;
-using System.Linq;
-using Apirion.Expressive.Core.Language;
-using Apirion.Expressive.Core.Language.Expressions;
+﻿using Expressive.Core.Language;
+using Expressive.Core.Language.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Apirion.Expressive.Tests.ParserTests
+namespace Expressive.Tests.ParserTests
 {
     [TestClass]
     public class TokenParseTests

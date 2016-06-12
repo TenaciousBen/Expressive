@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Apirion.Expressive.Core.Language.Interpreter;
+using Expressive.Core.Language.Interpreter;
 
-namespace Apirion.Expressive.Core.Language.Expressions
+namespace Expressive.Core.Language.Expressions
 {
     public class StringExpression : TerminatingExpression
     {

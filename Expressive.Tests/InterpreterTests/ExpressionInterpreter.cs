@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Apirion.Expressive.Core.Exceptions;
-using Apirion.Expressive.Core.Language;
-using Apirion.Expressive.Core.Language.Expressions;
-using Apirion.Expressive.Core.Language.Interpreter;
+using Expressive.Core.Exceptions;
+using Expressive.Core.Language.Interpreter;
 
-namespace Apirion.Expressive.Tests.InterpreterTests
+namespace Expressive.Tests.InterpreterTests
 {
     public class ExpressionInterpreter
     {

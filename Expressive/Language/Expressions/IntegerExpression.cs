@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Apirion.Expressive.Core.Language.Interpreter;
-using Apirion.Expressive.Core.Language.Types;
+﻿using Expressive.Core.Language.Interpreter;
 
-namespace Apirion.Expressive.Core.Language.Expressions
+namespace Expressive.Core.Language.Expressions
 {
     public class IntegerExpression : NumericExpression
     {

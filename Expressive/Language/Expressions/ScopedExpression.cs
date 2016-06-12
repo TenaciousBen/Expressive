@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using Apirion.Expressive.Core.Extensions;
-using Apirion.Expressive.Core.Language.Interpreter;
+using Expressive.Core.Extensions;
+using Expressive.Core.Language.Interpreter;
 
-namespace Apirion.Expressive.Core.Language.Expressions
+namespace Expressive.Core.Language.Expressions
 {
     public class ScopedExpression : Expression
     {

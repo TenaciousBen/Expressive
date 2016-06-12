@@ -1,8 +1,8 @@
 ﻿using System.Text.RegularExpressions;
-using Apirion.Expressive.Core.Language;
+using Expressive.Core.Language;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Apirion.Expressive.Tests.LexerTests
+namespace Expressive.Tests.LexerTests
 {
     [TestClass]
     public class LexerRegexTests

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Apirion.Expressive.Core.Exceptions;
+using Expressive.Core.Exceptions;
 
-namespace Apirion.Expressive.Core.Language.Interpreter
+namespace Expressive.Core.Language.Interpreter
 {
     public abstract class ExternalSource<T> : IEnumerable<KeyValuePair<string, T>>
     {

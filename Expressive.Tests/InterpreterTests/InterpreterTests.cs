@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using Apirion.Expressive.Core.Language;
-using Apirion.Expressive.Core.Language.Expressions;
-using Apirion.Expressive.Core.Language.Interpreter;
-using Apirion.Expressive.Tests.Helpers;
+using Expressive.Core.Language.Interpreter;
+using Expressive.Tests.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Apirion.Expressive.Tests.InterpreterTests
+namespace Expressive.Tests.InterpreterTests
 {
     [TestClass]
     public class InterpreterTests : ExpressionInterpreter

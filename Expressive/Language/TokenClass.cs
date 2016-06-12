@@ -1,4 +1,4 @@
-namespace Apirion.Expressive.Core.Language
+namespace Expressive.Core.Language
 {
     public enum TokenClass
     {

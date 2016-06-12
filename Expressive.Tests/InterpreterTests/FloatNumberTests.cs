@@ -1,9 +1,8 @@
-﻿using System;
-using Apirion.Expressive.Core.Language.Interpreter;
-using Apirion.Expressive.Core.Language.Types;
+﻿using Expressive.Core.Language.Interpreter;
+using Expressive.Core.Language.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Apirion.Expressive.Tests.InterpreterTests
+namespace Expressive.Tests.InterpreterTests
 {
     [TestClass]
     public class FloatNumberTests

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Apirion.Expressive.Core.Language.Types;
+using Expressive.Core.Language.Types;
 
-namespace Apirion.Expressive.Core.Language.Interpreter
+namespace Expressive.Core.Language.Interpreter
 {
     public class EvaluationResult
     {

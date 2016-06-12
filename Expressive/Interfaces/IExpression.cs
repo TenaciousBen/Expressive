@@ -1,4 +1,4 @@
-﻿namespace Apirion.Expressive.Core.Interfaces
+﻿namespace Expressive.Core.Interfaces
 {
     public interface IExpression
     {

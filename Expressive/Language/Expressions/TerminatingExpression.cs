@@ -1,4 +1,4 @@
-﻿namespace Apirion.Expressive.Core.Language.Expressions
+﻿namespace Expressive.Core.Language.Expressions
 {
     /// <summary>
     /// Represents an expression which can have no constituent expressions, such as a value type.

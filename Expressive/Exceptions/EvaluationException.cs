@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Apirion.Expressive.Core.Language.Expressions;
-using Apirion.Expressive.Core.Language.Interpreter;
+using Expressive.Core.Language.Expressions;
+using Expressive.Core.Language.Interpreter;
 
-namespace Apirion.Expressive.Core.Exceptions
+namespace Expressive.Core.Exceptions
 {
     public class EvaluationException : Exception
     {

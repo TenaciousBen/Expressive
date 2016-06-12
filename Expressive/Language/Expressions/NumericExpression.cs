@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Apirion.Expressive.Core.Extensions;
 
-namespace Apirion.Expressive.Core.Language.Expressions
+namespace Expressive.Core.Language.Expressions
 {
     public abstract class NumericExpression : TerminatingExpression
     {

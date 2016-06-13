@@ -78,7 +78,6 @@
     <Compile Include="Language\Token.cs" />
     <Compile Include="Language\TokenClass.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
-    <Compile Include="Interfaces\IExpression.cs" />
     <Compile Include="Language\Types\MathematicalValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

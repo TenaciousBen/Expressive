@@ -204,6 +204,25 @@ namespace Expressive.Tests.InterpreterTests
                 Assert.AreEqual(EvaluationType.Int, value.Type);
                 Assert.AreEqual(6, value.AsInt().Value);
             }
+            using (var timer = new TimeAssertion(milliseconds: 2))
+            {
+                value = EvaluateOperation(@"[title] + [name]", NumericPrecision.Decimal, new Dictionary<string, object>
+                {
+                    { "[title]", "Captain " },
+                    { "[name]", "Foo" }
+                }, null);
+                Assert.AreEqual(EvaluationType.String, value.Type);
+                Assert.AreEqual("Captain Foo", value.AsString());
+            }
+            using (var timer = new TimeAssertion(milliseconds: 5))
+            {
+                value = EvaluateOperation(@"[formula] + 10", NumericPrecision.Decimal, new ValueSource
+                {
+                    { "[formula]", new EvaluationResult(EvaluationType.Expression, "(3 + 1) / 2") }
+                }, null);
+                Assert.AreEqual(EvaluationType.Int, value.Type);
+                Assert.AreEqual(12, value.AsInt());
+            }
         }
 
         [TestMethod]

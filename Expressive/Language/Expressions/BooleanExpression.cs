@@ -16,6 +16,6 @@ namespace Expressive.Core.Language.Expressions
         }
 
         public override EvaluationResult Evaluate(NumericPrecision numericPrecision, ValueSource values, FunctionSource functions)
-            => bool.Parse(Constituents[0].ToString());
+            => bool.Parse(ToString());
     }
 }

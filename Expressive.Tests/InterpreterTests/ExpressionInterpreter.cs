@@ -13,6 +13,14 @@ namespace Expressive.Tests.InterpreterTests
         {
             return Interpreter.Evaluate(expression, precision, values, functions);
         }
+
+        public EvaluationResult EvaluateOperation(string expression, NumericPrecision precision, ValueSource values,
+            FunctionSource functions)
+        {
+            return Interpreter.Evaluate(expression, precision, values, functions);
+        }
+
+
         public EvaluationResult EvaluateOperation(string expression, NumericPrecision precision)
         {
             return Interpreter.Evaluate(expression, precision);

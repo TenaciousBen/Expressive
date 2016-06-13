@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expressive.Core", "Expressi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expressive.Tests", "Expressive.Tests\Expressive.Tests.csproj", "{9D34EE06-843C-4574-9CD8-F6C697CEA65C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expressive.Console", "Expressive.Console\Expressive.Console.csproj", "{4491766C-4462-4EE5-AB48-EB742677B246}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9D34EE06-843C-4574-9CD8-F6C697CEA65C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D34EE06-843C-4574-9CD8-F6C697CEA65C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D34EE06-843C-4574-9CD8-F6C697CEA65C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4491766C-4462-4EE5-AB48-EB742677B246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4491766C-4462-4EE5-AB48-EB742677B246}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4491766C-4462-4EE5-AB48-EB742677B246}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4491766C-4462-4EE5-AB48-EB742677B246}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

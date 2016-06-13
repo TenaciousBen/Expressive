@@ -6,8 +6,8 @@ namespace Expressive.Core.Language.Interpreter
 {
     public class EvaluationResult
     {
-        public EvaluationType Type { get; set; }
-        public object Result { get; set; }
+        public EvaluationType Type { get; protected set; }
+        public object Result { get; protected set; }
 
         public EvaluationResult(EvaluationType type, object result)
         {
@@ -66,7 +66,7 @@ namespace Expressive.Core.Language.Interpreter
         {
             return Type == EvaluationType.Null || Result == null;
         }
-
+        
         public static implicit operator EvaluationResult(bool value) => new EvaluationResult(EvaluationType.Boolean, value);
         public static implicit operator EvaluationResult(int value) => new EvaluationResult(EvaluationType.Int, value);
         public static implicit operator EvaluationResult(double value) => new EvaluationResult(EvaluationType.Float, value);

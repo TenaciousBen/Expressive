@@ -5,9 +5,14 @@
         Int,
         Float,
         String,
-        DateTime, // provided for through functions - there is no date-literal syntax in Expressive
+        // Provided for through functions - there is no date-literal syntax in Expressive
+        DateTime, 
         Boolean,
         Enumerable,
-        Null // exists a result or input - there is no null-literal syntax in Expressive
+        // An unevaluated expression as a string. Differentiated from 'String' to avoid unintentionally evaluating raw strings. 
+        // Should never be returned by the interpreter.
+        Expression,
+        // Exists a result or input; there is no null-literal syntax in Expressive
+        Null
     }
 }

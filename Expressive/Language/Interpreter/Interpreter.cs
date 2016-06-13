@@ -25,6 +25,8 @@ namespace Expressive.Core.Language.Interpreter
 
         public static EvaluationResult Evaluate(string expression, NumericPrecision precision, ValueSource values, FunctionSource functions)
         {
+            values = values ?? new ValueSource();
+            functions = functions ?? new FunctionSource();
             var tokens = Lexer.Lex(expression);
             var parsed = Parser.Parse(tokens);
             return parsed.Evaluate(precision, values, functions);

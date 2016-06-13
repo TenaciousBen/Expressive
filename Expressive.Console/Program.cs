@@ -36,6 +36,7 @@ namespace Expressive.Console
             {
                 var result = Interpreter.Evaluate(expression, NumericPrecision.Float, _values, _functions);
                 if (result.Type == EvaluationType.Enumerable) System.Console.WriteLine(new PrintableList(result.AsList()));
+                if (result.Type == EvaluationType.Float) System.Console.WriteLine(result.AsFloat());
                 else System.Console.WriteLine(result.Result);
             }
             catch (LexerException e)

@@ -40,7 +40,7 @@ namespace Expressive.Tests.ParserTests
             parsed = Parser.Parse(tokens);
             Assert.IsInstanceOfType(parsed, typeof(ScopedExpression));
             Assert.IsInstanceOfType(parsed.Constituents[0], typeof(BooleanExpression));
-            expression = "(                         [Salary %]\r\n\t)";
+            expression = "(                         [age]\r\n\t)";
             tokens = Lexer.Lex(expression);
             parsed = Parser.Parse(tokens);
             Assert.IsInstanceOfType(parsed, typeof(ScopedExpression));
@@ -123,17 +123,17 @@ namespace Expressive.Tests.ParserTests
             Assert.AreEqual("splat", parsed.Constituents[0].ToString());
             Assert.IsInstanceOfType(parsed.Constituents[1], typeof(SeparatedExpression));
             Assert.AreEqual("([full name], ',')", parsed.Constituents[1].ToString());
-            expression = "concat(getFirstName([full name]), getRaise([salary], [new salary]))";
+            expression = "concat(getFirstName([full name]), getRaise([height], [new height]))";
             tokens = Lexer.Lex(expression);
             parsed = Parser.Parse(tokens);
             Assert.IsInstanceOfType(parsed.Constituents[0], typeof(SymbolExpression));
             Assert.AreEqual("concat", parsed.Constituents[0].ToString());
             Assert.IsInstanceOfType(parsed.Constituents[1], typeof(SeparatedExpression));
-            Assert.AreEqual("(getFirstName([full name]), getRaise([salary], [new salary]))", parsed.Constituents[1].ToString());
+            Assert.AreEqual("(getFirstName([full name]), getRaise([height], [new height]))", parsed.Constituents[1].ToString());
             Assert.IsInstanceOfType(parsed.Constituents[1].Constituents[0], typeof(FunctionExpression));
             Assert.AreEqual("getFirstName([full name])", parsed.Constituents[1].Constituents[0].ToString());
             Assert.IsInstanceOfType(parsed.Constituents[1].Constituents[1], typeof(FunctionExpression));
-            Assert.AreEqual("getRaise([salary], [new salary])", parsed.Constituents[1].Constituents[1].ToString());
+            Assert.AreEqual("getRaise([height], [new height])", parsed.Constituents[1].Constituents[1].ToString());
         }
 
         [TestMethod]
@@ -201,48 +201,48 @@ namespace Expressive.Tests.ParserTests
         [TestMethod]
         public void CanParseComplexExpressions()
         {
-            var expression = @"(([New Salary] - [Salary]) / [Salary]) * 100 > 3";
+            var expression = @"(([New height] - [height]) / [height]) * 100 > 3";
             var tokens = Lexer.Lex(expression);
             var parsed = Parser.Parse(tokens);
             Assert.IsInstanceOfType(parsed, typeof(OperationExpression));
-            Assert.AreEqual("(([New Salary]-[Salary])/[Salary])*100>3", parsed.ToString());
-            expression = "And((([New Salary] - [Salary]) / [Salary]) * 100 > 3, (([New Salary] - [Salary]) / [Salary]) * 100 < 5)";
+            Assert.AreEqual("(([New height]-[height])/[height])*100>3", parsed.ToString());
+            expression = "And((([New height] - [height]) / [height]) * 100 > 3, (([New height] - [height]) / [height]) * 100 < 5)";
             tokens = Lexer.Lex(expression);
             parsed = Parser.Parse(tokens);
             Assert.IsInstanceOfType(parsed, typeof(FunctionExpression));
-            Assert.AreEqual("And((([New Salary]-[Salary])/[Salary])*100>3, (([New Salary]-[Salary])/[Salary])*100<5)", parsed.ToString());
-            expression = @"If(And((([New Salary] - [Salary]) / [Salary]) * 100 > 3, (([New Salary] - [Salary]) / [Salary]) * 100 < 5), [AcceptedWithNote])";
+            Assert.AreEqual("And((([New height]-[height])/[height])*100>3, (([New height]-[height])/[height])*100<5)", parsed.ToString());
+            expression = @"If(And((([New height] - [height]) / [height]) * 100 > 3, (([New height] - [height]) / [height]) * 100 < 5), [medicalHistory])";
             tokens = Lexer.Lex(expression);
             parsed = Parser.Parse(tokens);
             Assert.IsInstanceOfType(parsed, typeof(FunctionExpression));
-            Assert.AreEqual("If(And((([New Salary]-[Salary])/[Salary])*100>3, (([New Salary]-[Salary])/[Salary])*100<5), [AcceptedWithNote])", parsed.ToString());
-            expression = @"(And((([New Salary] - [Salary]) / [Salary]) * 100 > 3, (([New Salary] - [Salary]) / [Salary]) * 100 < 5), [AcceptedWithNote])";
+            Assert.AreEqual("If(And((([New height]-[height])/[height])*100>3, (([New height]-[height])/[height])*100<5), [medicalHistory])", parsed.ToString());
+            expression = @"(And((([New height] - [height]) / [height]) * 100 > 3, (([New height] - [height]) / [height]) * 100 < 5), [medicalHistory])";
             tokens = Lexer.Lex(expression);
             parsed = Parser.Parse(tokens);
             Assert.IsInstanceOfType(parsed, typeof(ScopedExpression));
-            Assert.AreEqual("(And((([New Salary]-[Salary])/[Salary])*100>3, (([New Salary]-[Salary])/[Salary])*100<5), [AcceptedWithNote])", parsed.ToString());
+            Assert.AreEqual("(And((([New height]-[height])/[height])*100>3, (([New height]-[height])/[height])*100<5), [medicalHistory])", parsed.ToString());
         }
 
         [TestMethod]
         public void AssertParserFailsGracefully()
         {
-            var expression = @"(([New Salary] - [Salary]) / [Salary]"; // error: unclosed scope
+            var expression = @"(([New height] - [height]) / [height]"; // error: unclosed scope
             var tokens = Lexer.Lex(expression);
             var parsed = Parser.Parse(tokens);
             Assert.IsInstanceOfType(parsed, typeof(ErrorExpression));
             Assert.AreEqual(expression, parsed.ToString());
-            expression = @"([New Salary] - [Salary]) / [Salary] *"; // error: [Salary] *
+            expression = @"([New height] - [height]) / [height] *"; // error: [height] *
             tokens = Lexer.Lex(expression);
             parsed = Parser.Parse(tokens);
             Assert.IsInstanceOfType(parsed, typeof(ErrorExpression));
             Assert.AreEqual(parsed.ToString(), "*");
             Assert.IsInstanceOfType(parsed.Constituents[0], typeof(OperationExpression));
-            Assert.AreEqual(parsed.Constituents[0].ToString(), "([New Salary]-[Salary])/[Salary]");
-            expression = @"And((([New Salary][Salary])/[Salary])*100>3, (([New Salary]-[Salary])/[Salary])*100<5)"; // error: ([New Salary][Salary])
+            Assert.AreEqual(parsed.Constituents[0].ToString(), "([New height]-[height])/[height]");
+            expression = @"And((([New height][height])/[height])*100>3, (([New height]-[height])/[height])*100<5)"; // error: ([New height][height])
             tokens = Lexer.Lex(expression);
             parsed = Parser.Parse(tokens);
             Assert.IsInstanceOfType(parsed, typeof(ErrorExpression));
-            Assert.AreEqual("((([New Salary][Salary])/[Salary])*100>3, (([New Salary]-[Salary])/[Salary])*100<5)", parsed.ToString());
+            Assert.AreEqual("((([New height][height])/[height])*100>3, (([New height]-[height])/[height])*100<5)", parsed.ToString());
         }
 
         private static void AssertParserFailsGracefully(string expression)

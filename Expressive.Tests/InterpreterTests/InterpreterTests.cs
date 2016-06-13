@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Expressive.Core.Language.Interpreter;
 using Expressive.Tests.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -104,6 +105,21 @@ namespace Expressive.Tests.InterpreterTests
                 value = EvaluateOperation(@"100 >= 3", NumericPrecision.Decimal);
                 Assert.AreEqual(EvaluationType.Boolean, value.Type);
                 Assert.AreEqual(true, value.AsBoolean().Value);
+            }
+        }
+
+        [TestMethod]
+        public void CanPerformMixedMathematicalOperations()
+        {
+            //miss out time trial for the first eval, as this includes the start-up time for the interpreter etc
+            var value = EvaluateOperation(@"100.00 + 3", NumericPrecision.Float);
+            Assert.AreEqual(EvaluationType.Float, value.Type);
+            Assert.AreEqual(103, value.AsFloat().Value);
+            using (var timer = new TimeAssertion(milliseconds: 1))
+            {
+                value = EvaluateOperation(@"100 - 3.00", NumericPrecision.Float);
+                Assert.AreEqual(EvaluationType.Float, value.Type);
+                Assert.AreEqual(97, value.AsFloat().Value);
             }
         }
 
@@ -229,14 +245,12 @@ namespace Expressive.Tests.InterpreterTests
         public void CanUseBasicFunctions()
         {
             EvaluationResult value = null;
-            using (var timer = new TimeAssertion(milliseconds: 5))
-            {
-                value = EvaluateOperation(@"SumInts([three], 2, 1)", NumericPrecision.Decimal, 
-                    new Dictionary<string, object> { { "[three]", 3 } },
-                    new Dictionary<string, ExternalFunction> { { "SumInts", SumInts } });
-                Assert.AreEqual(EvaluationType.Int, value.Type);
-                Assert.AreEqual(6, value.AsInt().Value);
-            }
+            //miss out time trial for the first eval, as this includes the start-up time for the interpreter etc
+            value = EvaluateOperation(@"SumInts([three], 2, 1)", NumericPrecision.Decimal,
+                new Dictionary<string, object> { { "[three]", 3 } },
+                new Dictionary<string, ExternalFunction> { { "SumInts", SumInts } });
+            Assert.AreEqual(EvaluationType.Int, value.Type);
+            Assert.AreEqual(6, value.AsInt().Value);
             using (var timer = new TimeAssertion(milliseconds: 5))
             {
                 value = EvaluateOperation(@"SumInts([three], 2) + 1", NumericPrecision.Decimal,
@@ -244,6 +258,30 @@ namespace Expressive.Tests.InterpreterTests
                     new Dictionary<string, ExternalFunction> { { "SumInts", SumInts } });
                 Assert.AreEqual(EvaluationType.Int, value.Type);
                 Assert.AreEqual(6, value.AsInt().Value);
+            }
+            using (var timer = new TimeAssertion(milliseconds: 5))
+            {
+                value = EvaluateOperation(@"SumInts([three], ((2 + 4) * 2) / 2) + 1", NumericPrecision.Decimal,
+                    new Dictionary<string, object> { { "[three]", 3 } },
+                    new Dictionary<string, ExternalFunction> { { "SumInts", SumInts } });
+                Assert.AreEqual(EvaluationType.Int, value.Type);
+                Assert.AreEqual(10, value.AsInt().Value);
+            }
+            using (var timer = new TimeAssertion(milliseconds: 5))
+            {
+                value = EvaluateOperation(@"ListFactory()", NumericPrecision.Decimal,
+                    null,
+                    new Dictionary<string, ExternalFunction> { { "ListFactory", ListFactory } });
+                Assert.AreEqual(EvaluationType.Enumerable, value.Type);
+                Assert.IsTrue(value.AsList().Select(i => i.Result).SequenceEqual(new List<object> { 1, 2, 3 }));
+            }
+            using (var timer = new TimeAssertion(milliseconds: 5))
+            {
+                value = EvaluateOperation(@"IncrementInt(1)", NumericPrecision.Decimal,
+                    null,
+                    new Dictionary<string, ExternalFunction> { { "IncrementInt", IncrementInt } });
+                Assert.AreEqual(EvaluationType.Int, value.Type);
+                Assert.AreEqual(2, value.AsInt().Value);
             }
         }
 

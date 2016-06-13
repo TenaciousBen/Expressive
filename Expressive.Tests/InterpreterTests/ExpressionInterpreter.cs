@@ -50,5 +50,15 @@ namespace Expressive.Tests.InterpreterTests
             foreach (var element in enumerable) sum += (int)element.Result;
             return sum;
         }
+
+        public EvaluationResult ListFactory(EvaluationResult result)
+        {
+            return new List<EvaluationResult> { 1, 2, 3 };
+        }
+
+        public EvaluationResult IncrementInt(EvaluationResult result)
+        {
+            return result.AsInt().Value + 1;
+        }
     }
 }

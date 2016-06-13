@@ -19,7 +19,7 @@ namespace Expressive.Tests.Helpers
         public void Dispose()
         {
             Stopwatch.Stop();
-            Assert.IsTrue(Stopwatch.ElapsedMilliseconds <= Milliseconds);
+            if (!Debugger.IsAttached) Assert.IsTrue(Stopwatch.ElapsedMilliseconds <= Milliseconds, "Time assertion failed");
         }
     }
 }

@@ -89,6 +89,6 @@ namespace Expressive.Core.Language.Expressions
         }
 
         public override EvaluationResult Evaluate(NumericPrecision numericPrecision, ValueSource values, FunctionSource functions)
-            => Constituents[0].Evaluate(numericPrecision, values, functions);
+            => Constituents.Any() ? Constituents[0].Evaluate(numericPrecision, values, functions) : new EvaluationResult(EvaluationType.Null, null);
     }
 }

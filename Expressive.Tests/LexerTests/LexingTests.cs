@@ -10,14 +10,14 @@ namespace Expressive.Tests.LexerTests
         [TestMethod]
         public void CanLexBasicReplacementSymbols()
         {
-            var expression = "([salary %], [bonus])";
+            var expression = "([age], [weight])";
             var expected = new List<Token>
                 {
                     new Token(TokenClass.StartScope, "("),
-                    new Token(TokenClass.ReplacementSymbol, "[salary %]"),
+                    new Token(TokenClass.ReplacementSymbol, "[age]"),
                     new Token(TokenClass.Separator, ","),
                     new Token(TokenClass.Whitespace, " "),
-                    new Token(TokenClass.ReplacementSymbol, "[bonus]"),
+                    new Token(TokenClass.ReplacementSymbol, "[weight]"),
                     new Token(TokenClass.EndScope, ")")
                 };
             var lexed = Lexer.Lex(expression);
@@ -34,14 +34,14 @@ namespace Expressive.Tests.LexerTests
         [TestMethod]
         public void CanLexBasicStringSymbols()
         {
-            var expression = "('salary', 'bonus')";
+            var expression = "('height', 'weight')";
             var expected = new List<Token>
                 {
                     new Token(TokenClass.StartScope, "("),
-                    new Token(TokenClass.String, "'salary'"),
+                    new Token(TokenClass.String, "'height'"),
                     new Token(TokenClass.Separator, ","),
                     new Token(TokenClass.Whitespace, " "),
-                    new Token(TokenClass.String, "'bonus'"),
+                    new Token(TokenClass.String, "'weight'"),
                     new Token(TokenClass.EndScope, ")")
                 };
             var lexed = Lexer.Lex(expression);
@@ -58,15 +58,15 @@ namespace Expressive.Tests.LexerTests
         [TestMethod]
         public void CanLexBasicOperatorSymbols()
         {
-            var expression = "([new salary] - [salary]) = [increase %]";
+            var expression = "([new height] - [height]) = [increase %]";
             var expected = new List<Token>
                 {
                     new Token(TokenClass.StartScope, "("),
-                    new Token(TokenClass.ReplacementSymbol, "[new salary]"),
+                    new Token(TokenClass.ReplacementSymbol, "[new height]"),
                     new Token(TokenClass.Whitespace, " "),
                     new Token(TokenClass.Operator, "-"),
                     new Token(TokenClass.Whitespace, " "),
-                    new Token(TokenClass.ReplacementSymbol, "[salary]"),
+                    new Token(TokenClass.ReplacementSymbol, "[height]"),
                     new Token(TokenClass.EndScope, ")"),
                     new Token(TokenClass.Whitespace, " "),
                     new Token(TokenClass.Operator, "="),
@@ -118,14 +118,14 @@ namespace Expressive.Tests.LexerTests
         [TestMethod]
         public void CanLexBoolean()
         {
-            var expression = "[new salary] > [salary] = true";
+            var expression = "[new height] > [height] = true";
             var expected = new List<Token>
                 {
-                    new Token(TokenClass.ReplacementSymbol, "[new salary]"),
+                    new Token(TokenClass.ReplacementSymbol, "[new height]"),
                     new Token(TokenClass.Whitespace, " "),
                     new Token(TokenClass.Operator, ">"),
                     new Token(TokenClass.Whitespace, " "),
-                    new Token(TokenClass.ReplacementSymbol, "[salary]"),
+                    new Token(TokenClass.ReplacementSymbol, "[height]"),
                     new Token(TokenClass.Whitespace, " "),
                     new Token(TokenClass.Operator, "="),
                     new Token(TokenClass.Whitespace, " "),
@@ -145,7 +145,7 @@ namespace Expressive.Tests.LexerTests
         [TestMethod]
         public void CanLexSymbols()
         {
-            var expression = "AND(((([new salary] / [salary]) * 100) - 100) < 3, AND([performance] > 2, [performance] < 4))";
+            var expression = "AND(((([new height] / [height]) * 100) - 100) < 3, AND([attribute] > 2, [attribute] < 4))";
             var expected = new List<Token>
                 {
                     new Token(TokenClass.Symbol, "AND"),
@@ -153,11 +153,11 @@ namespace Expressive.Tests.LexerTests
                     new Token(TokenClass.StartScope, "("),
                     new Token(TokenClass.StartScope, "("),
                     new Token(TokenClass.StartScope, "("),
-                    new Token(TokenClass.ReplacementSymbol, "[new salary]"),
+                    new Token(TokenClass.ReplacementSymbol, "[new height]"),
                     new Token(TokenClass.Whitespace, " "),
                     new Token(TokenClass.Operator, "/"),
                     new Token(TokenClass.Whitespace, " "),
-                    new Token(TokenClass.ReplacementSymbol, "[salary]"),
+                    new Token(TokenClass.ReplacementSymbol, "[height]"),
                     new Token(TokenClass.EndScope, ")"),
                     new Token(TokenClass.Whitespace, " "),
                     new Token(TokenClass.Operator, "*"),
@@ -177,14 +177,14 @@ namespace Expressive.Tests.LexerTests
                     new Token(TokenClass.Whitespace, " "),
                     new Token(TokenClass.Symbol, "AND"),
                     new Token(TokenClass.StartScope, "("),
-                    new Token(TokenClass.ReplacementSymbol, "[performance]"),
+                    new Token(TokenClass.ReplacementSymbol, "[attribute]"),
                     new Token(TokenClass.Whitespace, " "),
                     new Token(TokenClass.Operator, ">"),
                     new Token(TokenClass.Whitespace, " "),
                     new Token(TokenClass.Integer, "2"),
                     new Token(TokenClass.Separator, ","),
                     new Token(TokenClass.Whitespace, " "),
-                    new Token(TokenClass.ReplacementSymbol, "[performance]"),
+                    new Token(TokenClass.ReplacementSymbol, "[attribute]"),
                     new Token(TokenClass.Whitespace, " "),
                     new Token(TokenClass.Operator, "<"),
                     new Token(TokenClass.Whitespace, " "),

@@ -61,8 +61,8 @@ namespace Expressive.Tests.LexerTests
             const string spacedAlphaSymbol = "[symbol one]";
             const string alphanumericSymbol = "[symbol123]";
             const string spacedAlphanumericSymbol = "[symbol 123]";
-            const string specialSymbol = "[salary %]";
-            const string salaryPrefixSymbol = "[salary], [bonus]";
+            const string specialSymbol = "[age]";
+            const string heightPrefixSymbol = "[height], [weight]";
             const string invalidEmptySymbol = "[]";
             const string invalidNonStart = "1 + " + specialSymbol;
             Assert.IsTrue(Lexer.ReplacementSymbolRegex.IsMatch(alphaSymbol));
@@ -70,8 +70,8 @@ namespace Expressive.Tests.LexerTests
             Assert.IsTrue(Lexer.ReplacementSymbolRegex.IsMatch(alphanumericSymbol));
             Assert.IsTrue(Lexer.ReplacementSymbolRegex.IsMatch(spacedAlphanumericSymbol));
             Assert.IsTrue(Lexer.ReplacementSymbolRegex.IsMatch(specialSymbol));
-            Match salaryPrefixSymbolMatch = Lexer.ReplacementSymbolRegex.Match(salaryPrefixSymbol);
-            Assert.AreEqual("[salary]", salaryPrefixSymbolMatch.Value);
+            Match heightPrefixSymbolMatch = Lexer.ReplacementSymbolRegex.Match(heightPrefixSymbol);
+            Assert.AreEqual("[height]", heightPrefixSymbolMatch.Value);
             Assert.IsFalse(Lexer.ReplacementSymbolRegex.IsMatch(invalidEmptySymbol));
             Assert.IsFalse(Lexer.ReplacementSymbolRegex.IsMatch(invalidNonStart));
             Assert.IsFalse(Lexer.ReplacementSymbolRegex.IsMatch(""));

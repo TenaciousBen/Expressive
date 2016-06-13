@@ -11,3 +11,4 @@ TestResults/
 *.suo
 */Debug/*
 */bin/*
+Nuget

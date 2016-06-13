@@ -86,7 +86,6 @@ namespace Expressive.Core.Language
                     i += operatorMatch.Value.Length - 1;
                     continue;
                 }
-                //evaluate numerics before operators, as a numeric can be composed of an operator and a number e.g. -5
                 var numeric = NumericRegex.Match(remainder);
                 if (numeric.Success)
                 {

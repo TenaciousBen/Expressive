@@ -60,5 +60,13 @@ namespace Expressive.Tests.InterpreterTests
         {
             return result.AsInt().Value + 1;
         }
+
+        /// <summary>
+        /// Expects [two] to be defined as 2
+        /// </summary>
+        public EvaluationResult ExpressionFactoryResultingInTwo(EvaluationResult result)
+        {
+            return new EvaluationResult(EvaluationType.Expression, "(1 * 4) / [two]");
+        }
     }
 }

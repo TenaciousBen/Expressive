@@ -40,7 +40,7 @@ namespace Expressive.Console
             }
             catch (LexerException e)
             {
-                System.Console.WriteLine($"Lexer failure at index {e.Index}:");
+                System.Console.WriteLine($"Lexer failure at '{expression[e.Index]}':");
                 System.Console.WriteLine(e.Message);
             }
             catch (ParserException e)

@@ -4,6 +4,13 @@ using Expressive.Core.Language.Types;
 
 namespace Expressive.Core.Language.Interpreter
 {
+    /// <summary>
+    /// Encapsulates the result of evaluating an Expressive expression, or the value/result of an external function
+    /// or replacement symbol.
+    /// Implictly convertable from all supported .NET types.
+    /// All List types contained within will be of type EvaluationResult.
+    /// <see cref="EvaluationType"/>
+    /// </summary>
     public class EvaluationResult
     {
         public EvaluationType Type { get; protected set; }
@@ -47,7 +54,7 @@ namespace Expressive.Core.Language.Interpreter
         {
             if (Result is float || Result is decimal) return new RealNumber(precision, Result);
             if (Result is int) return RealNumber.FromInt(AsInt().Value, precision);
-            return null;
+            return Result as RealNumber;
         }
 
         public DateTime? AsDateTime()

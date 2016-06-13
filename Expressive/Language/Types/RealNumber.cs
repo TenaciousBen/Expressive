@@ -3,6 +3,11 @@ using Expressive.Core.Language.Interpreter;
 
 namespace Expressive.Core.Language.Types
 {
+    /// <summary>
+    /// Encapsulates real numbers, so that the interpreter can evaluate real numbers
+    /// as either a float or decimal depending on the supplied numerical precision.
+    /// <see cref="Interpreter.NumericPrecision"/>
+    /// </summary>
     public class RealNumber : MathematicalValue<RealNumber>
     {
         public NumericPrecision NumericPrecision { get; set; }

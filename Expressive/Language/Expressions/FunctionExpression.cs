@@ -36,7 +36,9 @@ namespace Expressive.Core.Language.Expressions
             var matchingFunction = functions.TryGetValue(symbol.ToString());
             if (matchingFunction == null) throw new UnmatchedSymbolException(symbol.ToString());
             var parameters = Constituents[1].Evaluate(numericPrecision, values, functions);
-            return matchingFunction.Invoke(parameters);
+            var result = matchingFunction.Invoke(parameters) ?? new EvaluationResult(EvaluationType.Null, null);
+            if (result.Type != EvaluationType.Expression) return result;
+            return Interpreter.Interpreter.Evaluate(result.AsString(), numericPrecision, values, functions);
         }
     }
 }

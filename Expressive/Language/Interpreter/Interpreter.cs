@@ -6,26 +6,50 @@ using Expressive.Core.Language.Expressions;
 
 namespace Expressive.Core.Language.Interpreter
 {
+    /// <summary>
+    /// The interpreter for the Expressive language.
+    /// </summary>
     public class Interpreter
     {
         public NumericPrecision NumericPrecision { get; set; }
-        public Dictionary<string, object> Values { get; set; }
-        public Dictionary<string, ExternalFunction> Functions { get; set; }
+        public ValueSource Values { get; set; }
+        public FunctionSource Functions { get; set; }
 
-        public Interpreter(NumericPrecision numericPrecision, Dictionary<string, object> values, Dictionary<string, ExternalFunction> functions)
+        public Interpreter(NumericPrecision numericPrecision, ValueSource values, FunctionSource functions)
         {
             NumericPrecision = numericPrecision;
             Values = values;
             Functions = functions;
         }
 
-        public Interpreter()
-            : this(NumericPrecision.Float, new Dictionary<string, object>(), new Dictionary<string, ExternalFunction>())
+        public Interpreter(NumericPrecision numericPrecision, Dictionary<string, object> values,
+            Dictionary<string, ExternalFunction> functions)
+            : this(numericPrecision, ValueSourceFromDictionary(values), FunctionSourceFromDictionary(functions))
+        {
+
+        }
+
+        public Interpreter(NumericPrecision numericPrecision)
+            : this(numericPrecision, new ValueSource(), new FunctionSource())
         {
         }
 
+        /// <summary>
+        /// Defaults to Float precision.
+        /// </summary>
+        public Interpreter()
+            : this(NumericPrecision.Float, new ValueSource(), new FunctionSource())
+        {
+        }
+
+        /// <summary>
+        /// Evalutes the parameter Expressive expression, passing in the NumericPrecision, Values and Functions properties as the context.
+        /// </summary>
         public EvaluationResult Evaluate(string expression) => Evaluate(expression, NumericPrecision, Values, Functions);
 
+        /// <summary>
+        /// Evaluates the parameter Expressive expression, with the parameter NumericPrecision, ValueSource and FunctionSource.
+        /// </summary>
         public static EvaluationResult Evaluate(string expression, NumericPrecision precision, ValueSource values, FunctionSource functions)
         {
             values = values ?? new ValueSource();
@@ -36,6 +60,10 @@ namespace Expressive.Core.Language.Interpreter
             return parsed.Evaluate(precision, values, functions);
         }
 
+        /// <summary>
+        /// Evaluates the parameter Expressive expression, with the parameter NumericPrecision, converting the parameter values 
+        /// and functions dictionaries in ValueSource and FunctionSource objects.
+        /// </summary>
         public static EvaluationResult Evaluate(string expression, NumericPrecision precision, Dictionary<string, object> values,
             Dictionary<string, ExternalFunction> functions)
         {
@@ -44,6 +72,9 @@ namespace Expressive.Core.Language.Interpreter
             return Evaluate(expression, precision, valueSource, functionSource);
         }
 
+        /// <summary>
+        /// Evaluates the parameter Expressive expression, with the parameter NumericPrecision and an empty ValueSource and FunctionSource.
+        /// </summary>
         public static EvaluationResult Evaluate(string expression, NumericPrecision precision)
         {
             var tokens = Lexer.Lex(expression);

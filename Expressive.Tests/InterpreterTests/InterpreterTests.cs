@@ -283,6 +283,14 @@ namespace Expressive.Tests.InterpreterTests
                 Assert.AreEqual(EvaluationType.Int, value.Type);
                 Assert.AreEqual(2, value.AsInt().Value);
             }
+            using (var timer = new TimeAssertion(milliseconds: 10))
+            {
+                value = EvaluateOperation(@"ExpressionFactoryResultingInTwo()", NumericPrecision.Decimal,
+                    new Dictionary<string, object> { { "[two]", 2 } }, 
+                    new Dictionary<string, ExternalFunction> { { "ExpressionFactoryResultingInTwo", ExpressionFactoryResultingInTwo } });
+                Assert.AreEqual(EvaluationType.Int, value.Type);
+                Assert.AreEqual(2, value.AsInt().Value);
+            }
         }
 
         [TestMethod]

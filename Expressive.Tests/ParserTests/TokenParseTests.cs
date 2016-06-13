@@ -1,4 +1,6 @@
-﻿using Expressive.Core.Language;
+﻿using System;
+using Expressive.Core.Exceptions;
+using Expressive.Core.Language;
 using Expressive.Core.Language.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -7,6 +9,14 @@ namespace Expressive.Tests.ParserTests
     [TestClass]
     public class TokenParseTests
     {
+        [TestMethod]
+        public void OperatorOnlyExpressionsFailGracefully()
+        {
+            AssertParserFailsGracefully("+");
+            AssertParserFailsGracefully("+++");
+            AssertParserFailsGracefully("+/-*");
+        }
+
         [TestMethod]
         public void CanParseSimpleScopes()
         {
@@ -214,7 +224,7 @@ namespace Expressive.Tests.ParserTests
         }
 
         [TestMethod]
-        public void ParserFailsGracefully()
+        public void AssertParserFailsGracefully()
         {
             var expression = @"(([New Salary] - [Salary]) / [Salary]"; // error: unclosed scope
             var tokens = Lexer.Lex(expression);
@@ -233,6 +243,21 @@ namespace Expressive.Tests.ParserTests
             parsed = Parser.Parse(tokens);
             Assert.IsInstanceOfType(parsed, typeof(ErrorExpression));
             Assert.AreEqual("((([New Salary][Salary])/[Salary])*100>3, (([New Salary]-[Salary])/[Salary])*100<5)", parsed.ToString());
+        }
+
+        private static void AssertParserFailsGracefully(string expression)
+        {
+            ParserException thrown = null;
+            try
+            {
+                var tokens = Lexer.Lex(expression);
+                var parsed = Parser.Parse(tokens);
+            }
+            catch (ParserException e)
+            {
+                thrown = e;
+            }
+            Assert.IsNotNull(thrown);
         }
     }
 }

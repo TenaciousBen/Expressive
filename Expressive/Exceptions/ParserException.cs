@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Expressive.Core.Language;
 
 namespace Expressive.Core.Exceptions
 {
@@ -15,6 +19,12 @@ namespace Expressive.Core.Exceptions
         public ParserException(string remainingLexemes)
             : this(remainingLexemes, null)
         {
+        }
+
+        public ParserException(IEnumerable<Token> remainingLexemes)
+            : this(string.Join("", remainingLexemes?.Select(l => l?.Lexeme ?? "") ?? new List<string>()))
+        {
+            
         }
     }
 }

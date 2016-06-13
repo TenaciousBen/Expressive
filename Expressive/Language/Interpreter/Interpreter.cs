@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Expressive.Core.Exceptions;
+using Expressive.Core.Language.Expressions;
 
 namespace Expressive.Core.Language.Interpreter
 {
@@ -29,17 +32,16 @@ namespace Expressive.Core.Language.Interpreter
             functions = functions ?? new FunctionSource();
             var tokens = Lexer.Lex(expression);
             var parsed = Parser.Parse(tokens);
+            if (parsed is ErrorExpression) throw new ParserException(((ErrorExpression)parsed).ErroneousTokens);
             return parsed.Evaluate(precision, values, functions);
         }
 
         public static EvaluationResult Evaluate(string expression, NumericPrecision precision, Dictionary<string, object> values,
             Dictionary<string, ExternalFunction> functions)
         {
-            var tokens = Lexer.Lex(expression);
-            var parsed = Parser.Parse(tokens);
             var valueSource = ValueSourceFromDictionary(values);
             var functionSource = FunctionSourceFromDictionary(functions);
-            return parsed.Evaluate(precision, valueSource, functionSource);
+            return Evaluate(expression, precision, valueSource, functionSource);
         }
 
         public static EvaluationResult Evaluate(string expression, NumericPrecision precision)

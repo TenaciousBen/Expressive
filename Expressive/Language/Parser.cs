@@ -95,7 +95,10 @@ namespace Expressive.Core.Language
                         parsed = new BooleanExpression().Parse(remainder);
                         break;
                     case TokenClass.Operator:
-                        if (program == null) throw new ParserException(remainder);
+                        parsed = new IntegerExpression().Parse(remainder);
+                        if (parsed.Expression != null) break;
+                        parsed = new FloatExpression().Parse(remainder);
+                        if (parsed.Expression != null) break;
                         parsed = new OperationExpression().Parse(program, remainder);
                         if (parsed.Expression != null) break;
                         parsed = new ErrorExpression().Parse(program, remainder);

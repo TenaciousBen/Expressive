@@ -20,11 +20,11 @@ namespace Expressive.Core.Language
         //Any single operator, where a larger operator takes precedent over a smaller e.g. == before =
         public readonly static Regex OperatorRegex = new Regex(@"^(!=|>=|<=|\+|-|/|\*|=|>|<){1}");
         //-14.5 where sign may be present, digts before dot must be present, and digts after dot must be present if dot is present
-        public readonly static Regex NumericRegex = new Regex(@"^[-+]?([0-9]+\.[0-9]+|[0-9]+)");
+        public readonly static Regex NumericRegex = new Regex(@"^([0-9]+\.[0-9]+|[0-9]+)");
         //-5 where sign may be present and digits must be present
-        public readonly static Regex IntegerRegex = new Regex(@"^[+-]?[0-9]+");
+        public readonly static Regex IntegerRegex = new Regex(@"^[0-9]+");
         //-5.5 where sign may be present, digits must be present, dot must be present and digits after dot must be present
-        public readonly static Regex FloatRegex = new Regex(@"^[-+]?([0-9]+\.[0-9]+)");
+        public readonly static Regex FloatRegex = new Regex(@"^([0-9]+\.[0-9]+)");
         //'content' where content may be enclosed by " or ' and may consist of any characters except its enclosing " or '
         public readonly static Regex StringRegex = new Regex("^(\".*?\")+|^('.*?')+");
         //true or false, where case doesn't matter and where the boolean must either have nothing, an endscope or a space after it
@@ -79,6 +79,13 @@ namespace Expressive.Core.Language
                     i += stringMatch.Value.Length - 1;
                     continue;
                 }
+                var operatorMatch = OperatorRegex.Match(remainder);
+                if (operatorMatch.Success)
+                {
+                    lexemes.Add(new Token(TokenClass.Operator, operatorMatch.Value));
+                    i += operatorMatch.Value.Length - 1;
+                    continue;
+                }
                 //evaluate numerics before operators, as a numeric can be composed of an operator and a number e.g. -5
                 var numeric = NumericRegex.Match(remainder);
                 if (numeric.Success)
@@ -95,13 +102,6 @@ namespace Expressive.Core.Language
                         lexemes.Add(new Token(TokenClass.Integer, numeric.Value));
                         i += numeric.Value.Length - 1;
                     }
-                    continue;
-                }
-                var operatorMatch = OperatorRegex.Match(remainder);
-                if (operatorMatch.Success)
-                {
-                    lexemes.Add(new Token(TokenClass.Operator, operatorMatch.Value));
-                    i += operatorMatch.Value.Length - 1;
                     continue;
                 }
                 //order evaluation by specificity: symbols are the least specific recognized lexeme, so keywords like bools are evaluated first

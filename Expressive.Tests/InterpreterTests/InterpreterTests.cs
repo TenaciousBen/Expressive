@@ -46,6 +46,26 @@ namespace Expressive.Tests.InterpreterTests
         }
 
         [TestMethod]
+        public void CanInterpretNegativeExpressions()
+        {
+            var value = EvaluateOperation(@"100-3", NumericPrecision.Decimal);
+            Assert.AreEqual(EvaluationType.Int, value.Type);
+            Assert.AreEqual(97, value.AsInt().Value);
+            using (var timer = new TimeAssertion(milliseconds: 1))
+            {
+                value = EvaluateOperation(@"-3 - -3", NumericPrecision.Decimal);
+                Assert.AreEqual(EvaluationType.Int, value.Type);
+                Assert.AreEqual(0, value.AsInt().Value);
+            }
+            using (var timer = new TimeAssertion(milliseconds: 1))
+            {
+                value = EvaluateOperation(@"-3 + -3", NumericPrecision.Decimal);
+                Assert.AreEqual(EvaluationType.Int, value.Type);
+                Assert.AreEqual(-6, value.AsInt().Value);
+            }
+        }
+
+        [TestMethod]
         public void CanPerformBasicIntegerOperations()
         {
             //miss out time trial for the first eval, as this includes the start-up time for the interpreter etc

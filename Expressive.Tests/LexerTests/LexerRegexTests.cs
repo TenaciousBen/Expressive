@@ -83,16 +83,16 @@ namespace Expressive.Tests.LexerTests
         {
             const string integer = "1";
             const string manyInteger = "12345";
-            const string signedInteger = "-24";
+            const string signedInteger = "24";
             const string singleFloat = "1.0";
             const string longFloat = "12314.2312551";
-            const string signedFloat = "-232.123";
-            const string positiveFloat = "+123.32";
+            const string signedFloat = "232.123";
+            const string positiveFloat = "123.32";
             const string invalidAlpha = "asd";
             const string invalidAlphanumeric = "asd312";
             const string invalidAlphafloat = "dqs32.1";
             const string invalidHalfFloat = ".10";
-            const string invalidSignedHalfFloat = "+.3";
+            const string invalidSignedHalfFloat = ".3";
             Assert.IsTrue(Lexer.NumericRegex.IsMatch(integer));
             Assert.IsTrue(Lexer.NumericRegex.IsMatch(manyInteger));
             Assert.IsTrue(Lexer.NumericRegex.IsMatch(signedInteger));
@@ -112,16 +112,16 @@ namespace Expressive.Tests.LexerTests
         {
             const string singleFloat = "1.0";
             const string longFloat = "12314.2312551";
-            const string signedFloat = "-232.123";
-            const string positiveFloat = "+123.32";
+            const string signedFloat = "232.123";
+            const string positiveFloat = "123.32";
             const string invalidInteger = "1";
             const string invalidManyInteger = "12345";
-            const string invalidSignedInteger = "-24";
+            const string invalidSignedInteger = "24";
             const string invalidAlpha = "asd";
             const string invalidAlphanumeric = "asd312";
             const string invalidAlphafloat = "dqs32.1";
             const string invalidHalfFloat = ".10";
-            const string invalidSignedHalfFloat = "+.3";
+            const string invalidSignedHalfFloat = ".3";
             Assert.IsTrue(Lexer.FloatRegex.IsMatch(singleFloat));
             Assert.IsTrue(Lexer.FloatRegex.IsMatch(longFloat));
             Assert.IsTrue(Lexer.FloatRegex.IsMatch(signedFloat));

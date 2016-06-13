@@ -58,7 +58,13 @@ namespace Expressive.Core.Language.Expressions
                             if (current.Expression == null) current = new SymbolExpression().Parse(remainder);
                             break;
                         case TokenClass.Operator:
-                            if (Constituents.Count == 2) break;
+                            if (Constituents.Count == 2)
+                            {
+                                current = new IntegerExpression().Parse(remainder);
+                                if (current.Expression != null) break;
+                                current = new FloatExpression().Parse(remainder);
+                                break;
+                            }
                             current = new OperatorExpression().Parse(remainder);
                             break;
                         case TokenClass.Integer:
@@ -118,7 +124,13 @@ namespace Expressive.Core.Language.Expressions
                             if (current.Expression == null) current = new SymbolExpression().Parse(remainder);
                             break;
                         case TokenClass.Operator:
-                            if (Constituents.Count == 2) break;
+                            if (Constituents.Count == 2)
+                            {
+                                current = new IntegerExpression().Parse(remainder);
+                                if (current.Expression != null) break;
+                                current = new FloatExpression().Parse(remainder);
+                                break;
+                            }
                             nonWhitespace = remainder.NextNonWhitespace(); // if there's nothing after the operator e.g. 1 +
                             if (nonWhitespace == null) return new Production(null, tokens);
                             current = new OperatorExpression().Parse(remainder);

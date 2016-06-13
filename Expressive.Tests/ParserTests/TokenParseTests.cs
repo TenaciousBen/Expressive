@@ -12,9 +12,9 @@ namespace Expressive.Tests.ParserTests
         [TestMethod]
         public void OperatorOnlyExpressionsFailGracefully()
         {
+            AssertParserFailsGracefully("+/-*");
             AssertParserFailsGracefully("+");
             AssertParserFailsGracefully("+++");
-            AssertParserFailsGracefully("+/-*");
         }
 
         [TestMethod]
@@ -248,16 +248,19 @@ namespace Expressive.Tests.ParserTests
         private static void AssertParserFailsGracefully(string expression)
         {
             ParserException thrown = null;
+            ErrorExpression error = null;
             try
             {
                 var tokens = Lexer.Lex(expression);
                 var parsed = Parser.Parse(tokens);
+                error = parsed as ErrorExpression;
             }
             catch (ParserException e)
             {
                 thrown = e;
             }
-            Assert.IsNotNull(thrown);
+            if (error == null) Assert.IsNotNull(thrown);
+            if (thrown == null) Assert.IsNotNull(error);
         }
     }
 }

@@ -74,15 +74,11 @@ namespace Expressive.Core.Language
                         if (parsed.Expression != null) break;
                         parsed = new ReplacementSymbolExpression().Parse(remainder);
                         break;
+                    case TokenClass.Float:
                     case TokenClass.Integer:
                         parsed = new OperationExpression().Parse(remainder);
                         if (parsed.Expression != null) break;
-                        parsed = new IntegerExpression().Parse(remainder);
-                        break;
-                    case TokenClass.Float:
-                        parsed = new OperationExpression().Parse(remainder);
-                        if (parsed.Expression != null) break;
-                        parsed = new FloatExpression().Parse(remainder);
+                        parsed = NumericExpression.TryParseNumeric(remainder);
                         break;
                     case TokenClass.String:
                         parsed = new OperationExpression().Parse(remainder);
@@ -95,9 +91,7 @@ namespace Expressive.Core.Language
                         parsed = new BooleanExpression().Parse(remainder);
                         break;
                     case TokenClass.Operator:
-                        parsed = new IntegerExpression().Parse(remainder);
-                        if (parsed.Expression != null) break;
-                        parsed = new FloatExpression().Parse(remainder);
+                        parsed = NumericExpression.TryParseNumeric(remainder);
                         if (parsed.Expression != null) break;
                         parsed = new OperationExpression().Parse(program, remainder);
                         if (parsed.Expression != null) break;

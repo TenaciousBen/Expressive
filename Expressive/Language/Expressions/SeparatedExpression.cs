@@ -30,7 +30,6 @@ namespace Expressive.Core.Language.Expressions
             var remaining = current.RemainingTokens.ToList();
             while (remaining.Any() && remaining.FirstOrDefault() != null && remaining[0].TokenClass != TokenClass.EndScope)
             {
-                Expression parsed;
                 switch (remaining.First().TokenClass)
                 {
                     case TokenClass.ReplacementSymbol:
@@ -38,12 +37,9 @@ namespace Expressive.Core.Language.Expressions
                         current = new ReplacementSymbolExpression().Parse(remaining);
                         break;
                     case TokenClass.Integer:
-                        if (Constituents.Count > 1 && !(Constituents.Last() is SeparatorExpression)) return new Production(null, tokens);
-                        current = new IntegerExpression().Parse(remaining);
-                        break;
                     case TokenClass.Float:
                         if (Constituents.Count > 1 && !(Constituents.Last() is SeparatorExpression)) return new Production(null, tokens);
-                        current = new FloatExpression().Parse(remaining);
+                        current = NumericExpression.TryParseNumeric(remaining);
                         break;
                     case TokenClass.String:
                         if (Constituents.Count > 1 && !(Constituents.Last() is SeparatorExpression)) return new Production(null, tokens);

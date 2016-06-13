@@ -60,18 +60,14 @@ namespace Expressive.Core.Language.Expressions
                         case TokenClass.Operator:
                             if (Constituents.Count == 2)
                             {
-                                current = new IntegerExpression().Parse(remainder);
-                                if (current.Expression != null) break;
-                                current = new FloatExpression().Parse(remainder);
+                                current = NumericExpression.TryParseNumeric(remainder);
                                 break;
                             }
                             current = new OperatorExpression().Parse(remainder);
                             break;
                         case TokenClass.Integer:
-                            current = new IntegerExpression().Parse(remainder);
-                            break;
                         case TokenClass.Float:
-                            current = new FloatExpression().Parse(remainder);
+                            current = NumericExpression.TryParseNumeric(remainder);
                             break;
                         case TokenClass.String:
                             current = new StringExpression().Parse(remainder);
@@ -126,9 +122,7 @@ namespace Expressive.Core.Language.Expressions
                         case TokenClass.Operator:
                             if (Constituents.Count == 2)
                             {
-                                current = new IntegerExpression().Parse(remainder);
-                                if (current.Expression != null) break;
-                                current = new FloatExpression().Parse(remainder);
+                                current = NumericExpression.TryParseNumeric(remainder);
                                 break;
                             }
                             nonWhitespace = remainder.NextNonWhitespace(); // if there's nothing after the operator e.g. 1 +
@@ -136,10 +130,8 @@ namespace Expressive.Core.Language.Expressions
                             current = new OperatorExpression().Parse(remainder);
                             break;
                         case TokenClass.Integer:
-                            current = new IntegerExpression().Parse(remainder);
-                            break;
                         case TokenClass.Float:
-                            current = new FloatExpression().Parse(remainder);
+                            current = NumericExpression.TryParseNumeric(remainder);
                             break;
                         case TokenClass.String:
                             current = new StringExpression().Parse(remainder);

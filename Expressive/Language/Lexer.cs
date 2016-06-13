@@ -19,11 +19,11 @@ namespace Expressive.Core.Language
         public readonly static Regex FunctionRegex = new Regex(@"^([a-zA-Z]([a-zA-Z]|[0-9])*)\(.*?\)"); 
         //Any single operator, where a larger operator takes precedent over a smaller e.g. == before =
         public readonly static Regex OperatorRegex = new Regex(@"^(!=|>=|<=|\+|-|/|\*|=|>|<){1}");
-        //-14.5 where sign may be present, digts before dot must be present, and digts after dot must be present if dot is present
+        //14.5 where digts before dot must be present, and digts after dot must be present if dot is present
         public readonly static Regex NumericRegex = new Regex(@"^([0-9]+\.[0-9]+|[0-9]+)");
-        //-5 where sign may be present and digits must be present
+        //5 where digits must be present
         public readonly static Regex IntegerRegex = new Regex(@"^[0-9]+");
-        //-5.5 where sign may be present, digits must be present, dot must be present and digits after dot must be present
+        //5.5 where digits must be present, dot must be present and digits after dot must be present
         public readonly static Regex FloatRegex = new Regex(@"^([0-9]+\.[0-9]+)");
         //'content' where content may be enclosed by " or ' and may consist of any characters except its enclosing " or '
         public readonly static Regex StringRegex = new Regex("^(\".*?\")+|^('.*?')+");

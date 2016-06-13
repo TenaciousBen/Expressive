@@ -28,16 +28,11 @@ namespace Expressive.Core.Language.Expressions
                         current = new ReplacementSymbolExpression().Parse(remaining);
                         break;
                     case TokenClass.Integer:
-                        current = new OperationExpression().Parse(remaining);
-                        if (current.Expression != null) break;
-                        if (Constituents.Count > 0) return new Production(null, tokens);
-                        current = new IntegerExpression().Parse(remaining);
-                        break;
                     case TokenClass.Float:
                         current = new OperationExpression().Parse(remaining);
                         if (current.Expression != null) break;
                         if (Constituents.Count > 0) return new Production(null, tokens);
-                        current = new FloatExpression().Parse(remaining);
+                        current = NumericExpression.TryParseNumeric(remaining);
                         break;
                     case TokenClass.String:
                         current = new OperationExpression().Parse(remaining);

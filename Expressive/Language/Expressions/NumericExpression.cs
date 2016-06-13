@@ -12,6 +12,17 @@ namespace Expressive.Core.Language.Expressions
             NumericType = numericType;
         }
 
+        /// <summary>
+        /// Will try to match the tokens against every possible numeric type
+        /// </summary>
+        public static Production TryParseNumeric(List<Token> tokens)
+        {
+            var integerType = new IntegerExpression().Parse(tokens);
+            if (integerType.Expression != null) return integerType;
+            var floatType = new FloatExpression().Parse(tokens);
+            return floatType;
+        }
+
         public override Production Parse(List<Token> tokens)
         {
             var negative = Negative(tokens);

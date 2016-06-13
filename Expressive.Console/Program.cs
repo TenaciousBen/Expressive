@@ -16,7 +16,7 @@ namespace Expressive.Console
         static void Main(string[] args)
         {
             System.Console.WriteLine("Expressive REPL interpreter");
-            System.Console.WriteLine("Type 'exit' to exit, an assignment of for 'x = expression' to declare a variable, or an expression to be evaluated");
+            System.Console.WriteLine("Type 'exit' to exit, an assignment of the form 'x = expression' to declare a variable, or an expression to be evaluated");
             do
             {
                 var input = GetNextInput();

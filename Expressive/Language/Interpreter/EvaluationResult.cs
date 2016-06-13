@@ -37,6 +37,7 @@ namespace Expressive.Core.Language.Interpreter
         public float? AsFloat()
         {
             if (Result is float || Result is decimal) Result = new RealNumber(NumericPrecision.Float, Result);
+            if (Result is int) Result = RealNumber.FromInt((int)Result, NumericPrecision.Float);
             var floatNumber = Result as RealNumber;
             if (floatNumber == null) return null;
             return floatNumber.AsFloat();
@@ -45,6 +46,7 @@ namespace Expressive.Core.Language.Interpreter
         public decimal? AsDecimal()
         {
             if (Result is float || Result is decimal) Result = new RealNumber(NumericPrecision.Decimal, Result);
+            if (Result is int) Result = RealNumber.FromInt((int)Result, NumericPrecision.Float);
             var floatNumber = Result as RealNumber;
             if (floatNumber == null) return null;
             return floatNumber.AsDecimal();

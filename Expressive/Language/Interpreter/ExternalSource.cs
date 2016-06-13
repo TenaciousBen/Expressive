@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Expressive.Core.Exceptions;
 
 namespace Expressive.Core.Language.Interpreter
@@ -15,8 +17,10 @@ namespace Expressive.Core.Language.Interpreter
 
         public T TryGetValue(string symbol)
         {
-            if (!ContainsKey(symbol)) throw new UnmatchedSymbolException(symbol);
-            return this[symbol];
+            if (string.IsNullOrEmpty(symbol)) throw new ArgumentNullException(nameof(symbol));
+            var caseInsensitiveKey = Keys.FirstOrDefault(k => k.ToLower() == symbol.ToLower());
+            if (string.IsNullOrEmpty(caseInsensitiveKey)) throw new UnmatchedSymbolException(symbol);
+            return this[caseInsensitiveKey];
         }
     }
 }

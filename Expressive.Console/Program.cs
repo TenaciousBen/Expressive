@@ -11,7 +11,7 @@ namespace Expressive.Console
     class Program
     {
         private static ValueSource _values = new ValueSource();
-        private static FunctionSource _functions = new FunctionSource();
+        private static FunctionSource _functions = Functions.FunctionSource();
 
         static void Main(string[] args)
         {

@@ -8,7 +8,9 @@ will evaluate to the correct numerical, date, boolean, enumerable or text value 
 
 ## Usage
 
-Nuget link to come here.
+Install via nuget with the following command:
+
+`Install-Package ExpressiveLang`
 
 The Interpreter exists in Expressive.Core.Language.Interpreter and can either be used statically (directly calling Evaluate) or by instance. If used statically, the functions and variables/values available to the interpreter must be passed into the Evaluate method. If used by instance, the interpreter's variable and function context can be set in its properties, which will then be supplied to all calls to Evaluate. The included Expressive.Console project shows a REPL implementation for the interpreter, showing normal static usage of the Interpreter.
 
